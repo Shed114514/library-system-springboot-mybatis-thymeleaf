@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shed.springboot.mapper.BookMapper">
+
+  <resultMap id="BaseResultMap" type="com.shed.springboot.domain.Book">
+    <id column="bid" jdbcType="INTEGER" property="bid" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="pubdate" jdbcType="DATE" property="pubdate" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    bid, category, title, author, publisher, pubdate, price, number, introduction
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.shed.springboot.domain.Book">
+    insert into book (bid, category, title, 
+      author, publisher, pubdate, 
+      price, number, introduction
+      )
+    values (#{bid,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{pubdate,jdbcType=DATE}, 
+      #{price,jdbcType=DOUBLE}, #{number,jdbcType=INTEGER}, #{introduction,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.shed.springboot.domain.Book">
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bid != null">
+        bid,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="pubdate != null">
+        pubdate,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bid != null">
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null">
+        #{pubdate,jdbcType=DATE},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.shed.springboot.domain.Book">
+    update book
+    <set>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null">
+        pubdate = #{pubdate,jdbcType=DATE},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.shed.springboot.domain.Book">
+    update book
+    set category = #{category,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      pubdate = #{pubdate,jdbcType=DATE},
+      price = #{price,jdbcType=DOUBLE},
+      number = #{number,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=VARCHAR}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllBooks" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from book
+  </select>
+
+  <update id="updateNumberDecrementByBid">
+    update book set number = number - 1 where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateNumberIncrementByBid">
+    update book set number = number + 1 where bid = #{bid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNumberByPrimaryKey" resultType="java.lang.Integer">
+    select number from book where bid = #{bid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectMidByBid" resultType="com.shed.springboot.domain.Member">
+    select * from member m,member_book mb where m.mid=mb.mid and mb.bid = #{bid,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertMidAndBid">
+    insert into member_book values (#{mid},#{bid})
+  </insert>
+
+  <select id="selectBookByMid" resultType="com.shed.springboot.domain.Book">
+    select * from book b,member_book mb where b.bid=mb.bid and mb.mid=#{mid}
+  </select>
+
+  <delete id="deleteRelationByBid">
+    delete from member_book where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+</mapper>

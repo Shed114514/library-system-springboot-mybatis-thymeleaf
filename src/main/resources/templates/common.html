@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="commonhead">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>Library System</title>
+
+  <!--icheck-->
+  <link th:href="@{/js/iCheck/skins/minimal/minimal.css}" rel="stylesheet">
+  <link th:href="@{/js/iCheck/skins/square/square.css}" rel="stylesheet">
+  <link th:href="@{/js/iCheck/skins/square/red.css}" rel="stylesheet">
+  <link th:href="@{/js/iCheck/skins/square/blue.css}" rel="stylesheet">
+
+  <!--dashboard calendar-->
+  <link th:href="@{/css/clndr.css}" rel="stylesheet">
+
+  <!--common-->
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+  <![endif]-->
+</head>
+
+
+<body>
+
+<div th:fragment="commonscript">
+  <!-- Placed js at the end of the document so the pages load faster -->
+  <script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+  <script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+  <script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/modernizr.min.js}"></script>
+  <script th:src="@{/js/jquery.nicescroll.js}"></script>
+
+  <!--easy pie chart-->
+  <script th:src="@{/js/easypiechart/jquery.easypiechart.js}"></script>
+  <script th:src="@{/js/easypiechart/easypiechart-init.js}"></script>
+
+  <!--Sparkline Chart-->
+  <script th:src="@{/js/sparkline/jquery.sparkline.js}"></script>
+  <script th:src="@{/js/sparkline/sparkline-init.js}"></script>
+
+  <!--icheck -->
+  <script th:src="@{/js/iCheck/jquery.icheck.js}"></script>
+  <script th:src="@{/js/icheck-init.js}"></script>
+
+  <!-- jQuery Flot Chart-->
+  <script th:src="@{/js/flot-chart/jquery.flot.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.tooltip.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.resize.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.pie.resize.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.selection.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.stack.js}"></script>
+  <script th:src="@{/js/flot-chart/jquery.flot.time.js}"></script>
+  <script th:src="@{/js/main-chart.js}"></script>
+
+  <!--common scripts for all pages-->
+  <script th:src="@{/js/scripts.js}"></script>
+</div>
+
+</body>
+</html>

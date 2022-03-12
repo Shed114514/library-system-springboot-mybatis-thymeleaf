@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Login Page</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!-- 响应式样式 -->
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+    <!-- js IE8支持HTML5元素和媒体查询 IE 兼容脚本 -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="login-body">
+
+<div class="container">
+    <form class="form-signin" th:method="post" th:action="@{/login}">
+        <div class="form-signin-heading text-center">
+        </div>
+        <div>
+            <h2 align="center">Library System</h2>
+        </div>
+        <div class="login-wrap">
+            <label style="color: green" th:text="${success}"></label>
+            <label style="color: red" th:text="${error}"></label>
+            <label style="color: green" th:text="${logout}"></label>
+            <input type="text" name="mid" class="form-control" placeholder="Member ID" autofocus>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+            <b>Log in as</b><div class="radio">
+                <label>
+                    <input type="radio" name="role" id="optionsRadios1" value="1"> Administrator
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="role" id="optionsRadios2" value="2"> Member
+                </label>
+            </div>
+            <button class="btn btn-lg btn-login btn-block" type="submit">
+                <i class="fa fa-check"></i>
+            </button>
+
+            <div class="registration">
+                <strong>You are not one of us?</strong>
+                <a class="" th:href="@{/register.html}">
+                    <strong>Join us !!!</strong>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{/js/modernizr.min.js}"></script>
+
+</body>
+</html>

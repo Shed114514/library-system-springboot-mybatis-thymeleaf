@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Book Adding</title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <img th:src="@{/images/logo_icon.png}" alt="">
+            <strong align="center" style="color: #efefef">Library System</strong>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a th:href="@{/index.html}"><img th:src="@{/images/logo_icon.png}" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+        <div class="left-side-inner">
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu"><a th:href="@{/admin/home}"><i class="fa fa-home"></i> <span>Admin Homepage</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span> Book Borrowing</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/admin/book/borrow.html}"> Book Borrowing List</a></li>
+                    </ul>
+                </li>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Book Management</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/admin/book/add.html}"> Book Adding</a></li>
+                        <li><a th:href="@{/admin/book/queryAll}"> Book List</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-th-list"></i> <span>Member Management</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/admin/member/queryAll}"> Member List</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/logout}"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <!--toggle button start-->
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <!--toggle button end-->
+
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <b>[[${admin.name}]]</b>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li><a th:href="@{/admin/profile}"><i class="fa fa-user"></i>  Profile</a></li>
+                            <li><a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                New Book Adding
+            </h3>
+            <a th:href="@{/admin/book/queryAll}">
+                <button class="btn btn-primary" type="button">
+                    <i class="fa fa-list"></i> Book List
+                </button>
+            </a><br/>
+            <br/><label style="color: green" th:text="${success}"></label>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <form id="default" class="form-horizontal" th:method="post" th:action="@{/admin/book/add}">
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Book ID</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="bid" placeholder="ID of the book (The ID will be automatically created if you don't fill in any number)" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Category</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="category" placeholder="Category of the book" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Title</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="title" placeholder="Title of the book" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Author</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="author" placeholder="Author of the book" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Publisher</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="publisher" placeholder="Name of the publisher" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Publication Date</label>
+                                    <div class="col-lg-10">
+                                        <input type="date" name="pubdate" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label " style="color: #1D2939">Price</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="price" placeholder="Price of the book" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Number</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="number" placeholder="Number of the book" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label" style="color: #1D2939">Introduction</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="introduction" placeholder="Introduction of the book" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-plus"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer>
+            2022 &copy; Library System by Shed
+        </footer>
+        <!--footer section end-->
+
+    </div>
+    <!-- main content end-->
+
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+<script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/modernizr.min.js}"></script>
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/validation-init.js}"></script>
+
+<!--common scripts for all pages-->
+<script th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>

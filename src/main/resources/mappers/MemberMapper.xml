@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shed.springboot.mapper.MemberMapper">
+
+  <resultMap id="BaseResultMap" type="com.shed.springboot.domain.Member">
+    <id column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    mid, password, name, gender, birthday
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.shed.springboot.domain.Member">
+    insert into member (mid,password,name,gender,birthday)
+    values (#{mid,jdbcType=INTEGER},#{password,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR},#{birthday,jdbcType=DATE})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.shed.springboot.domain.Member">
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.shed.springboot.domain.Member">
+    update member
+    <set>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.shed.springboot.domain.Member">
+    update member
+    set password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllMembers" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from member
+  </select>
+
+  <select id="countAllMembers" resultType="java.lang.Integer">
+    select count(*) from member
+  </select>
+
+  <select id="selectByMidAndPassword" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from member
+    where mid = #{mid,jdbcType=INTEGER} and password = #{password,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMembersByPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from member
+    limit #{currentPage},#{lineSize}
+  </select>
+
+  <select id="selectBidByMid" resultType="java.lang.Integer">
+    select bid from member_book where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllMid" resultType="java.lang.Integer">
+    select mid from member
+  </select>
+
+  <select id="updatePasswordByMid">
+    update member set password = #{password,jdbcType=VARCHAR} where mid = #{mid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAdminByMid" resultType="com.shed.springboot.domain.Admin">
+    select * from admin where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateAdminPasswordByMid">
+    update admin set password = #{password,jdbcType=VARCHAR} where mid = #{mid,jdbcType=VARCHAR}
+  </update>
+</mapper>
