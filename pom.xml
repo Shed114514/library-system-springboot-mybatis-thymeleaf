@@ -32,6 +32,18 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--Actuator监控起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--JDBC起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
         <!--SpringBoot集成Thymeleaf起步依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
