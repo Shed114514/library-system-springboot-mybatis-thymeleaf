@@ -64,16 +64,6 @@ public class BookServiceImpl implements BookService {
         }
     }
 
-    @Override
-    public Book queryBookById(Integer bid) {
-        return bookMapper.selectByPrimaryKey(bid);
-    }
-
-    @Override
-    public List<Book> queryAllBooks() {
-        return bookMapper.selectAllBooks();
-    }
-
     @Transactional
     @Override
     public void borrowBook(Integer mid, Integer bid) throws BookServiceErrorException {
@@ -112,5 +102,15 @@ public class BookServiceImpl implements BookService {
         bookMapper.deleteRelationByBid(bid);
         // 用户归还图书时,所对应图书的数量加一
         bookMapper.updateNumberIncrementByBid(bid);
+
+    }
+    @Override
+    public Book queryBookById(Integer bid) {
+        return bookMapper.selectByPrimaryKey(bid);
+    }
+
+    @Override
+    public List<Book> queryAllBooks() {
+        return bookMapper.selectAllBooks();
     }
 }
