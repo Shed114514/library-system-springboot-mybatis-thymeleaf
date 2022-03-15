@@ -47,12 +47,10 @@ public class LoginController {
             throws LoginFailedException {
         Object object = loginService.login(mid,password,role);
         if (object instanceof Admin) {
-            System.out.println("1instance " + object);
             Admin admin = (Admin) object;
             session.setAttribute("admin",admin);
             return "redirect:/admin/home";
         } else if (object instanceof Member) {
-            System.out.println("2instance " + object);
             Member member = (Member) object;
             session.setAttribute("member",member);
             return "redirect:/member/home";

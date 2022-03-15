@@ -208,7 +208,6 @@ public class AdminController {
      */
     @GetMapping("/member/queryAll")
     public String queryAllMembers(@SessionAttribute("admin") Admin admin, Model model) {
-        System.out.println("query: " + admin);
         List<Member> memberList = memberService.queryAllMembers();
         model.addAttribute("admin",admin);
         model.addAttribute("memberList",memberList);
