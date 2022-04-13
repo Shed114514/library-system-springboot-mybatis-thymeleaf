@@ -31,7 +31,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Object login(Integer mid, String password, Integer role) throws LoginFailedException {
-        // 利用DigestUtils对已加密的密码进行解密
         String passwdDecoded = DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8));
         // 当role等于1时为管理员登录,其他为普通用户登录
         if (role == 1) {
@@ -74,7 +73,7 @@ public class LoginServiceImpl implements LoginService {
             } else {
                 member.setGender("Female");
             }
-            // 利用DigestUtils编码工具对用户密码进行加密
+            // 利用DigestUtils编码工具对用户密码进行不可逆加密
             member.setPassword(DigestUtils.md5DigestAsHex(member.getPassword().getBytes(StandardCharsets.UTF_8)));
             // 将用户实例对象映射到数据库中对应的数据表字段
             memberMapper.insert(member);
