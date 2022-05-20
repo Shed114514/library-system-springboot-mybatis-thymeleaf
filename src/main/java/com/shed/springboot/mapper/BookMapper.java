@@ -24,5 +24,5 @@ public interface BookMapper extends BaseMapper<Integer,Book> {
 
     List<Book> selectBookByMid(Integer mid);
 
-    void deleteRelationByBid(Integer bid);
+    void deleteRelationByBidAndMid(Integer bid,Integer mid);
 }

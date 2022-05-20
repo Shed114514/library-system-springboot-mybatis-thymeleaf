@@ -99,7 +99,7 @@ public class BookServiceImpl implements BookService {
         }
         // 用户归还图书
         // 先删除用户与图书的关联
-        bookMapper.deleteRelationByBid(bid);
+        bookMapper.deleteRelationByBidAndMid(bid,mid);
         // 用户归还图书时,所对应图书的数量加一
         bookMapper.updateNumberIncrementByBid(bid);
 

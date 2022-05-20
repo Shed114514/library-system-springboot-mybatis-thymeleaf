@@ -174,7 +174,7 @@
     select * from book b,member_book mb where b.bid=mb.bid and mb.mid=#{mid}
   </select>
 
-  <delete id="deleteRelationByBid">
-    delete from member_book where bid = #{bid,jdbcType=INTEGER}
+  <delete id="deleteRelationByBidAndMid">
+    delete from member_book where bid = #{bid,jdbcType=INTEGER} and mid = #{mid,jdbcType=INTEGER}
   </delete>
 </mapper>
